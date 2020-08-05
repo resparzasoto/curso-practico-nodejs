@@ -1,0 +1,30 @@
+{
+  "name": "curso-practico-nodejs",
+  "version": "1.0.0",
+  "description": "Curso Práctico de NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon -r dotenv/config api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resparzasoto/curso-practico-nodejs.git"
+  },
+  "keywords": [],
+  "author": "Rubén Esparza @resparzasoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/resparzasoto/curso-practico-nodejs/issues"
+  },
+  "homepage": "https://github.com/resparzasoto/curso-practico-nodejs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
