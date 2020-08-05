@@ -10,5 +10,5 @@ const app = express();
 app.use('/api/user', user);
 
 app.listen(config.api.port, () => {
-    console.log(chalk.green('API escuchando en el puerto', chalk.yellow(config.api.port)) );;
+    console.log(chalk.green('API escuchando en el puerto', chalk.yellow(config.api.port)));;
 });
