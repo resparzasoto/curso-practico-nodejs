@@ -11,16 +11,24 @@ const list = async (table) => {
 
 const get = async (table, id) => {
     const cols = await list(table);
-    return cols.filter(item => item.id === id);
+    return cols.find(item => item.id === id);
 }
 
-const upsert = async (table, data) => {
-    db[table].push(data);
+const upsert = async (table, user) => {
+    const foundUserIndex = db[table].findIndex(item => item.id === user.id);
+
+    (foundUserIndex > -1) ? db[table][foundUserIndex] = user : db[table].push(user);
+
     return true;
 }
 
 const remove = async (table, id) => {
-    db[table].splice(db[table].findIndex(item => item.id === id), 1);
+    const fountUserIndex = db[table].findIndex(item => item.id === id);
+
+    if (fountUserIndex > -1) {
+        db[table].splice(fountUserIndex, 1);
+    }
+
     return true;
 }
 

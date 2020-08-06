@@ -6,7 +6,9 @@ const success = (req, res, message = 'Done', status = 200) => {
     });
 }
 
-const error = (req, res, message = 'Internal Server Error', status = 500) => {
+const error = (req, res, message = 'Internal Server Error', status = 500, details = 'No more details') => {
+    console.log(details);
+
     res.status(status).send({
         error: true,
         status: status,

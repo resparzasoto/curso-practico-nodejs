@@ -9,6 +9,10 @@ module.exports = (injectedStore = require('../../../store/dummy')) => {
         return injectedStore.get(TABLE_USER, id);
     }
 
+    const upsert =  async (user) => {
+        return injectedStore.upsert(TABLE_USER, user);
+    }
+
     const remove = async (id) => {
         return injectedStore.remove(TABLE_USER, id);
     }
@@ -16,6 +20,7 @@ module.exports = (injectedStore = require('../../../store/dummy')) => {
     return {
         list,
         get,
+        upsert,
         remove,
     };
 }
