@@ -1,20 +1,35 @@
-const TABLE_USER = 'user';
+const { nanoid } = require('nanoid')
+
+
+const TABLE = 'user';
 
 module.exports = (injectedStore = require('../../../store/dummy')) => {
-    const list = async () => {
-        return injectedStore.list(TABLE_USER);
+    async function list() {
+        return injectedStore.list(TABLE);
     }
 
-    const get = async (id) => {
-        return injectedStore.get(TABLE_USER, id);
+    async function get(id) {
+        return injectedStore.get(TABLE, id);
     }
 
-    const upsert =  async (user) => {
-        return injectedStore.upsert(TABLE_USER, user);
+    async function upsert(body) {
+        const user = {
+            id: '',
+            name: body.name,
+        };
+
+        if (body.id) {
+            user.id = body.id;
+        }
+        else {
+            user.id = nanoid();
+        }
+
+        return injectedStore.upsert(TABLE, user);
     }
 
-    const remove = async (id) => {
-        return injectedStore.remove(TABLE_USER, id);
+    async function remove (id) {
+        return injectedStore.remove(TABLE, id);
     }
 
     return {

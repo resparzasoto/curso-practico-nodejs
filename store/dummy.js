@@ -5,30 +5,20 @@ const db = {
     ],
 };
 
-const list = async (table) => {
+async function list(table) {
     return db[table];
 }
 
-const get = async (table, id) => {
+async function get(table, id) {
     const cols = await list(table);
     return cols.find(item => item.id === id);
 }
 
-const upsert = async (table, user) => {
-    const foundUserIndex = db[table].findIndex(item => item.id === user.id);
-
-    (foundUserIndex > -1) ? db[table][foundUserIndex] = user : db[table].push(user);
-
-    return true;
+async function upsert(table, user) {
+    db[table].push(user);
 }
 
-const remove = async (table, id) => {
-    const fountUserIndex = db[table].findIndex(item => item.id === id);
-
-    if (fountUserIndex > -1) {
-        db[table].splice(fountUserIndex, 1);
-    }
-
+async function remove(table, id) {
     return true;
 }
 
