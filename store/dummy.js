@@ -20,12 +20,12 @@ async function get(table, id) {
     return cols.find(item => item.id === id);
 }
 
-async function upsert(table, user) {
+async function upsert(table, data) {
     if (!db[table]) {
         db[table] = [];
     }
 
-    db[table].push(user);
+    db[table].push(data);
 
     console.log(db);
 }

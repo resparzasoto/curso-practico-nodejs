@@ -13,7 +13,7 @@ function login(req, res) {
             response.success(req, res, token, 200);
         })
         .catch((e) => {
-            response.error(req, res, 'Información invalida', 400, e);
+            response.error(req, res, 'Information not valid', 400, e);
         });
 }
 
