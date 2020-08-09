@@ -1,7 +1,13 @@
 const db = {
     user: [
-        { id: '1', name: 'Carlos' },
-        { id: '2', name: 'Jesús' },
+        {
+            id: '1',
+            name: 'Carlos'
+        },
+        {
+            id: '2',
+            name: 'Jesús'
+        },
     ],
 };
 
@@ -15,7 +21,13 @@ async function get(table, id) {
 }
 
 async function upsert(table, user) {
+    if (!db[table]) {
+        db[table] = [];
+    }
+
     db[table].push(user);
+
+    console.log(db);
 }
 
 async function remove(table, id) {
