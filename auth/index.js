@@ -15,6 +15,10 @@ const check = {
         const decoded = decodeHeader(req);
 
         console.log(decoded);
+
+        if (decoded.id !== owner) {
+            throw new Error("You can't do that");
+        }
     },
 }
 
@@ -44,4 +48,5 @@ function decodeHeader(req) {
 
 module.exports = {
     sign,
+    check,
 };
