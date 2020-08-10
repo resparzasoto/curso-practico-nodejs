@@ -7,14 +7,12 @@ const router = express.Router();
 
 router.post('/login', login);
 
-function login(req, res) {
+function login(req, res, next) {
     controller.login(req.body.username, req.body.password)
         .then((token) => {
             response.success(req, res, token, 200);
         })
-        .catch((e) => {
-            response.error(req, res, 'Information not valid', 400, e);
-        });
+        .catch(next);
 }
 
 module.exports = router;
