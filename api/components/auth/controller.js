@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const auth = require('../../../auth');
+const error = require('../../../utils/error');
 
 const TABLE = 'auth';
 const SALT_OF_ENCRYPTION = 5;
@@ -12,7 +13,7 @@ module.exports = (injectedStore = require('../../../store/dummy')) => {
         const areEquals = await bcrypt.compare(password, data.password);
 
         if (!areEquals) {
-            throw new Error('Information no valid');
+            throw new error('Information not valid', 400);
         }
 
         return auth.sign(data);

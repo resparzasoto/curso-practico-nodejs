@@ -1,3 +1,6 @@
+const config = require('../config');
+const error = require('../utils/error');
+
 const db = {
     user: [
         {
@@ -27,7 +30,9 @@ async function upsert(table, data) {
 
     db[table].push(data);
 
-    console.log(db);
+    if (config.api.environment === 'development') {
+        console.log(db);
+    }
 }
 
 async function remove(table, id) {

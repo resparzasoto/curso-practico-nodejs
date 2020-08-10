@@ -1,3 +1,5 @@
+const config = require('../config');
+
 function success(req, res, message = 'Done', status = 200) {
     res.status(status).send({
         error: false,
@@ -6,8 +8,10 @@ function success(req, res, message = 'Done', status = 200) {
     });
 }
 
-function error(req, res, message = 'Internal Server Error', status = 500, details = 'No more details') {
-    console.log(details);
+function error(req, res, message = 'Internal Server Error', status = 500, details) {
+    if (config.api.environment === 'development') {
+        console.error(details);
+    }
 
     res.status(status).send({
         error: true,

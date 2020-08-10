@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const config = require('../config');
+const error = require('../utils/error');
 
 function sign(data) {
     return jwt.sign(data, config.jwt.secret);
@@ -14,21 +15,23 @@ const check = {
     own: (req, owner) => {
         const decoded = decodeHeader(req);
 
-        console.log(decoded);
+        if (config.api.environment === 'development') {
+            console.log(decoded);
+        }
 
         if (decoded.id !== owner) {
-            throw new Error("You can't do that");
+            throw error("You can't do that", 403);
         }
     },
 }
 
 function getToken(header) {
     if (!header) {
-        throw new Error('Token not provided');
+        throw error('Token not provided', 401);
     }
 
     if (header.indexOf('Bearer ') === -1) {
-        throw new Error('Invalid format');
+        throw error('Invalid format', 401);
     }
 
     const token = header.replace('Bearer ', '');
