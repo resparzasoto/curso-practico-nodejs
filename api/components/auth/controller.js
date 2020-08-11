@@ -6,7 +6,7 @@ const error = require('../../../utils/error');
 const TABLE = 'auth';
 const SALT_OF_ENCRYPTION = 5;
 
-module.exports = (injectedStore = require('../../../store/dummy')) => {
+module.exports = (injectedStore = require('../../../store/mssql')) => {
     async function login(username, password) {
         const data = await injectedStore.query(TABLE, { username: username });
 

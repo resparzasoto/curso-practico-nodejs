@@ -3,7 +3,7 @@ const auth = require('../auth');
 
 const TABLE = 'user';
 
-module.exports = (injectedStore = require('../../../store/dummy')) => {
+module.exports = (injectedStore = require('../../../store/mssql')) => {
     async function list() {
         return injectedStore.list(TABLE);
     }
