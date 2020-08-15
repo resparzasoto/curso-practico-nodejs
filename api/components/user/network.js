@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/', list);
 router.get('/:id', get);
+router.post('/follow/:id', secure('follow'), follow);
 router.post('/', upsert);
 router.put('/', secure('update'), upsert);
 router.delete('/:id', remove);
@@ -40,6 +41,14 @@ function remove(req, res, next) {
     controller.remove(req.params.id)
         .then((result) => {
             response.success(req, res, result, 200);
+        })
+        .catch(next);
+}
+
+function follow(req, res, next) {
+    controller.follow(req.user.id, req.params.id)
+        .then(data => {
+            return response.success(req, res, data, 201);
         })
         .catch(next);
 }

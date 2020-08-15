@@ -23,6 +23,9 @@ const check = {
             throw error("You can't do that", 403);
         }
     },
+    logged: (req) => {
+        decodeHeader(req);
+    },
 }
 
 function getToken(header) {

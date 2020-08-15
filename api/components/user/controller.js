@@ -43,10 +43,18 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
         return injectedStore.remove(TABLE, id);
     }
 
+    function follow(from, to) {
+        return injectedStore.upsert(TABLE + '_follows', {
+            user_from: from,
+            user_to: to,
+        }, true);
+    }
+
     return {
         list,
         get,
         upsert,
         remove,
+        follow,
     };
 }
