@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
 const auth = require('../auth');
 
-const TABLE = 'user';
+const TABLE = 'users';
 
 module.exports = (injectedStore = require('../../../store/mssql')) => {
     async function list() {
@@ -13,11 +13,11 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
     }
 
     async function upsert(body) {
+        let newRecord = false;
         const user = {
             id: '',
-            name: body.name,
             username: body.username,
-            password: body.password,
+            name: body.name,
         };
 
         if (body.id) {
@@ -25,20 +25,21 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
         }
         else {
             user.id = nanoid();
+            newRecord = true;
         }
 
-        if (body.password || body.username) {
+        if (body.username || body.password) {
             await auth.upsert({
                 id: user.id,
-                username: user.username,
-                password: user.password,
-            });
+                username: body.username,
+                password: body.password,
+            }, newRecord);
         }
 
-        return injectedStore.upsert(TABLE, user);
+        return injectedStore.upsert(TABLE, user, newRecord);
     }
 
-    async function remove (id) {
+    async function remove(id) {
         return injectedStore.remove(TABLE, id);
     }
 

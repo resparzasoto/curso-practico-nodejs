@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 const auth = require('../../../auth');
 const error = require('../../../utils/error');
 
-const TABLE = 'auth';
+const TABLE = 'auths';
 const SALT_OF_ENCRYPTION = 5;
 
 module.exports = (injectedStore = require('../../../store/mssql')) => {
     async function login(username, password) {
-        const data = await injectedStore.query(TABLE, { username: username });
+        const data = await injectedStore.query(TABLE, username);
 
         const areEquals = await bcrypt.compare(password, data.password);
 
@@ -19,7 +19,7 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
         return auth.sign(data);
     }
 
-    async function upsert(user) {
+    async function upsert(user, newRecord) {
         const authData = {
             id: user.id,
         };
@@ -32,7 +32,7 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
             authData.password = await bcrypt.hash(user.password, SALT_OF_ENCRYPTION);
         }
 
-        return injectedStore.upsert(TABLE, authData);
+        return injectedStore.upsert(TABLE, authData, newRecord);
     }
 
 

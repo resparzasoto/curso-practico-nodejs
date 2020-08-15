@@ -1,6 +1,7 @@
 USE platzisocial;
 GO
-CREATE TABLE dbo.users (
+CREATE TABLE dbo.users
+(
 	id VARCHAR(32) NOT NULL DEFAULT '',
 	username VARCHAR(32) NOT NULL DEFAULT '',
 	name VARCHAR(64) NOT NULL DEFAULT '',
