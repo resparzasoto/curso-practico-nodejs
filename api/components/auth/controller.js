@@ -8,7 +8,8 @@ const SALT_OF_ENCRYPTION = 5;
 
 module.exports = (injectedStore = require('../../../store/mssql')) => {
     async function login(username, password) {
-        const data = await injectedStore.query(TABLE, username);
+
+        const data = await injectedStore.query(TABLE, { username: username });
 
         const areEquals = await bcrypt.compare(password, data.password);
 

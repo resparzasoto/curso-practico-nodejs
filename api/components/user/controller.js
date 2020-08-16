@@ -1,5 +1,6 @@
 const { nanoid } = require('nanoid');
 const auth = require('../auth');
+const { Table } = require('mssql');
 
 const TABLE = 'users';
 
@@ -43,11 +44,19 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
         return injectedStore.remove(TABLE, id);
     }
 
-    function follow(from, to) {
+    async function follow(from, to) {
         return injectedStore.upsert(TABLE + '_follows', {
             user_from: from,
             user_to: to,
         }, true);
+    }
+
+    async function following(id) {
+        const join = {};
+        join[TABLE] = 'user_to';
+        const query = { user_from: id };
+
+        return injectedStore.query(TABLE + '_follows', query, join);
     }
 
     return {
@@ -56,5 +65,6 @@ module.exports = (injectedStore = require('../../../store/mssql')) => {
         upsert,
         remove,
         follow,
+        following,
     };
 }

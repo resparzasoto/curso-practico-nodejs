@@ -125,11 +125,25 @@ function upsert(table, data, newRecord = false) {
     }
 }
 
-function query(table, condition) {
+function query(table, condition, join) {
+    let stmt = '';
+    let joinQuery = '';
+
+    if (join) {
+        const key = Object.keys(join)[0];
+        const val = join[key];
+        joinQuery = `INNER JOIN ${key} ON ${table}.${val} = ${key}.id`;
+    }
+
+    const entrie = Object.entries(condition)[0];
+    const keyCondition = entrie[0];
+    const valueCondition = entrie[1];
+
+    stmt = `SELECT * FROM ${table} ${joinQuery} WHERE ${table}.${keyCondition} = '${valueCondition}'`;
+
     return new Promise((resolve, reject) => {
         poolConnect.request()
-            .input('input_condition', condition)
-            .query(`SELECT * FROM ${table} WHERE username = @input_condition`)
+            .query(stmt)
             .then(data => {
                 return resolve(data.recordset[0]);
             })
