@@ -158,6 +158,7 @@ handleConnection();
 module.exports = {
     list,
     get,
+    insert,
     upsert,
     query,
 };

@@ -25,6 +25,6 @@ app.use(errors);
 
 app.listen(config.api.port, () => {
     if (config.api.environment === 'development') {
-        console.log(chalk.green('[API]'), chalk.blueBright(`listen in http://localhost:${chalk.yellow(config.api.port)}`));;
+        console.log(chalk.green('[API]'), chalk.blueBright(`Listen in http://localhost:${chalk.yellow(config.api.port)}`));;
     }
 });

@@ -1,4 +1,11 @@
 module.exports = {
+    api: {
+        port: process.env.PORT,
+        environment: process.env.NODE_ENV,
+    },
+    jwt: {
+        secret: process.env.SECRET,
+    },
     mssql: {
         server: process.env.MSSQL_SERVER,
         port: Number(process.env.MSSQL_PORT),
@@ -10,11 +17,7 @@ module.exports = {
             enableArithAbort: Boolean(process.env.MSSQL_OPTIONS_ENABLE_ARITH_ABORT),
         },
     },
-    api: {
-        port: process.env.PORT,
-        environment: process.env.NODE_ENV,
-    },
-    jwt: {
-        secret: process.env.SECRET,
+    mssqlService: {
+        port: process.env.MSSQL_SERVICE_PORT,
     },
 };
