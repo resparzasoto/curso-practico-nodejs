@@ -7,6 +7,7 @@
     "start": "node api/index.js",
     "dev": "nodemon -r dotenv/config api/index.js",
     "dev:mssql": "nodemon -r dotenv/config mssql/index.js",
+    "dev:post": "nodemon -r dotenv/config post/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

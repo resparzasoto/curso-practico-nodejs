@@ -3,6 +3,9 @@ module.exports = {
         port: process.env.PORT,
         environment: process.env.NODE_ENV,
     },
+    post: {
+        port: process.env.POST_PORT,
+    },
     jwt: {
         secret: process.env.SECRET,
     },
