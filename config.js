@@ -18,6 +18,7 @@ module.exports = {
         },
     },
     mssqlService: {
+        host: process.env.MSSQL_SERVICE_HOST,
         port: process.env.MSSQL_SERVICE_PORT,
     },
 };
