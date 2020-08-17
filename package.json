@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/resparzasoto/curso-practico-nodejs#readme",
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "pm2": "^4.4.0"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
