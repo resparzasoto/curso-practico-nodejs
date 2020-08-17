@@ -9,6 +9,7 @@ module.exports = {
     jwt: {
         secret: process.env.SECRET || "s3cr3t-phr4s3d",
     },
+    remoteDB: process.env.REMOTE_DB || false,
     mssql: {
         server: process.env.MSSQL_SERVER || "RUBENMSI",
         port: Number(process.env.MSSQL_PORT) || 1433,
