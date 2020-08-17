@@ -11,13 +11,13 @@ module.exports = {
     },
     remoteDB: process.env.REMOTE_DB || false,
     mssql: {
-        server: process.env.MSSQL_SERVER || "RUBENMSI",
+        server: process.env.MSSQL_SERVER,// || "RUBENMSI",
         port: Number(process.env.MSSQL_PORT) || 1433,
         user: process.env.MSSQL_USER || "sa",
         password: process.env.MSSQL_PASSWORD || "Admin.123456",
         database: process.env.MSSQL_DATABASE || "platzisocial",
         options: {
-            encrypted: process.env.MSSQL_OPTIONS_ENCRYPTED || true,
+            encrypted: Boolean(process.env.MSSQL_OPTIONS_ENCRYPTED) || true,
             enableArithAbort: Boolean(process.env.MSSQL_OPTIONS_ENABLE_ARITH_ABORT) || true,
         },
     },

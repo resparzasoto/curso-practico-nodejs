@@ -24,12 +24,13 @@ sql.on('error', (e) => {
     }
 });
 
-function handleConnection() {
-    pool = new sql.ConnectionPool(dbConfig)
-    pool.connect()
-        .then(result => {
-            poolConnect = result;
-        });
+async function handleConnection() {
+    try {
+        pool = new sql.ConnectionPool(dbConfig)
+        poolConnect = await pool.connect();
+    } catch (error) {
+        console.log(e);
+    }
 }
 
 function list(table) {

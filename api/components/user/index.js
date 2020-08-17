@@ -3,7 +3,7 @@ const config = require('../../../config');
 
 let store;
 
-if (config.remoteDB) {
+if (config.remoteDB === true) {
     store = require('../../../store/remote-mssql');
 } else {
     store = require('../../../store/mssql');
