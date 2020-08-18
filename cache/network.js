@@ -12,7 +12,7 @@ router.put('/:table', upsert);
 function list(req, res, next) {
     store.list(req.params.table)
         .then(data => {
-            return response.success(data);
+            return response.success(req, res, data, 200);
         })
         .catch(next);
 }
@@ -20,7 +20,7 @@ function list(req, res, next) {
 function get(req, res, next) {
     store.get(req.params.table, req.params.id)
         .then(data => {
-            return response.success(data);
+            return response.success(req, res, data, 200);
         })
         .catch(next);
 }
@@ -28,7 +28,7 @@ function get(req, res, next) {
 function upsert(req, res, next) {
     store.upsert(req.params.table, req.body)
         .then(data => {
-            return response.success(data);
+            return response.success(req, res, data, 201);
         })
         .catch(next);
 }
