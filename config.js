@@ -11,7 +11,7 @@ module.exports = {
     },
     remoteDB: process.env.REMOTE_DB || false,
     mssql: {
-        server: process.env.MSSQL_SERVER,// || "RUBENMSI",
+        server: process.env.MSSQL_SERVER,//|| "RUBENMSI",
         port: Number(process.env.MSSQL_PORT) || 1433,
         user: process.env.MSSQL_USER || "sa",
         password: process.env.MSSQL_PASSWORD || "Admin.123456",
@@ -24,5 +24,9 @@ module.exports = {
     mssqlService: {
         host: process.env.MSSQL_SERVICE_HOST || "localhost",
         port: process.env.MSSQL_SERVICE_PORT || 3001,
+    },
+    cacheService: {
+        host: process.env.CACHE_SERVICE_HOST || "localhost",
+        port: process.env.CACHE_SERVICE_PORT || 3003,
     },
 };

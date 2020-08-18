@@ -1,0 +1,1 @@
+//TODO LO QUE REDIS
