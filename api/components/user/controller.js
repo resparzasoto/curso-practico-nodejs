@@ -1,12 +1,22 @@
 const { nanoid } = require('nanoid');
 const auth = require('../auth');
-const { Table } = require('mssql');
 
 const TABLE = 'users';
 
-module.exports = (injectedStore = require('../../../store/mssql')) => {
+module.exports = (injectedStore = require('../../../store/mssql'), injectedCache = require('../../../store/mssql')) => {
     async function list() {
-        return injectedStore.list(TABLE);
+        let users = await injectedCache.list(TABLE);
+
+        if (!users) {
+            console.log('No estaba en caché');
+            users = await injectedStore.list(TABLE);
+            injectedCache.upsert(TABLE, users);
+        }
+        else {
+            console.log('Los datos vienen del caché');
+        }
+
+        return users;
     }
 
     async function get(id) {

@@ -18,7 +18,7 @@ function list(table) {
             let res = data || null;
 
             if (data) {
-                res = JSON.stringify(data);
+                res = JSON.parse(data);
             }
 
             return resolve(res);
@@ -36,7 +36,7 @@ function get(table, id) {
             let res = data || null;
 
             if (data) {
-                res = JSON.stringify(data);
+                res = JSON.parse(data);
             }
 
             return resolve(res);
